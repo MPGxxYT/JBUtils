@@ -63,7 +63,7 @@ public class LootTable implements CRUD.Identifiable {
       for (Map.Entry<String, BigDecimal> entry : chanceMap.getTable().entrySet()) {
         ItemStack item = ItemStackHelper.deserialize(entry.getKey());
         Component displayName = TextUtil.format("&7" + Utils.itemName(item));
-        if (item.getItemMeta().hasDisplayName()) {
+        if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
           displayName = item.getItemMeta().displayName();
         }
         builder.addLore(

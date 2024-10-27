@@ -28,6 +28,10 @@ public class LootTableCommand extends BaseCommand {
       player.sendMessage(TextUtil.format("&cLoot Table not found."));
       return;
     }
+    if (tableByID.getChanceMap().size() < 1) {
+      player.sendMessage(TextUtil.format("&cTable is empty."));
+      return;
+    }
     for (int i = 0; i < count; i++) {
       player.getInventory().addItem(ItemStackHelper.deserialize(tableByID.getChanceMap().roll()));
     }

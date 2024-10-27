@@ -95,6 +95,7 @@ public class LootTableMenu extends InventoryGUI {
                             lootTable.save();
                             Main.getGuiManager()
                                 .openGUI(new ModifyLootTableMenu(lootTable), player);
+                            return Collections.emptyList();
                           }
                           player.sendMessage(TextUtil.format("&cLoot Table already exists."));
                           Main.getGuiManager().openGUI(new LootTableMenu(), player);

@@ -67,11 +67,11 @@ public enum LootTableManager {
 
   public synchronized boolean addLootTable(LootTable table) {
     if (containsLootTable(table)) {
-      return true;
+      return false;
     }
     set.add(table);
     table.save();
-    return false;
+    return true;
   }
 
   public synchronized void removeLootTable(LootTable table) {
@@ -82,8 +82,7 @@ public enum LootTableManager {
   }
 
   public synchronized void updateLootTable(LootTable table) {
-    removeLootTable(table);
+    set.remove(table);
     addLootTable(table);
   }
-
 }

@@ -27,6 +27,9 @@ public class ExrOfLootTable extends SimpleExpression<ItemStack> {
     if (table == null) {
       return null;
     }
+    if (table.getChanceMap().size() < 1) {
+      return null;
+    }
     int countSingle = Integer.parseInt(count.getSingle(event).toString());
     ItemStack[] itemStacks = new ItemStack[countSingle];
     for (int i = 0; i < countSingle; i++) {

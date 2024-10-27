@@ -1,6 +1,8 @@
 name: JBUtils
 version: '1.0-SNAPSHOT'
-main: me.mortaldev.jBUtils.Main
+main: me.mortaldev.jbutils.Main
 api-version: '1.19'
 authors: [ MortalDev ]
-description: This is a plugin for JailBreakMC that adds features to help devs create anything. 
+description: This is a plugin for JailBreakMC that adds features to help devs create anything.
+softdepend:
+  - Skript

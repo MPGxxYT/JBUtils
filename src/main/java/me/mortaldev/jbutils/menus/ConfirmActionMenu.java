@@ -15,15 +15,15 @@ public class ConfirmActionMenu extends InventoryGUI {
 
   SupplierRunnable<String> confirmAction;
   SupplierRunnable<String> cancelAction;
-  ItemStack itemStack;
+  ItemStack centerItem;
 
   public ConfirmActionMenu(
-      ItemStack itemStack,
+      ItemStack centerItem,
       SupplierRunnable<String> confirmAction,
       SupplierRunnable<String> cancelAction) {
     this.confirmAction = confirmAction;
     this.cancelAction = cancelAction;
-    this.itemStack = itemStack;
+    this.centerItem = centerItem;
   }
 
   @Override
@@ -39,7 +39,7 @@ public class ConfirmActionMenu extends InventoryGUI {
     for (int i = 15; i < 18; i++) {
       addButton(i, CancelButton());
     }
-    getInventory().setItem(13, itemStack);
+    getInventory().setItem(13, centerItem);
     super.decorate(player);
   }
 

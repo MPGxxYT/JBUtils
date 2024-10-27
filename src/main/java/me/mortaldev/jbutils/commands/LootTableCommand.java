@@ -10,6 +10,8 @@ import me.mortaldev.jbutils.utils.ItemStackHelper;
 import me.mortaldev.jbutils.utils.TextUtil;
 import org.bukkit.entity.Player;
 
+import java.util.Optional;
+
 @CommandAlias("loottable|ltb")
 @CommandPermission("jbutils.admin")
 public class LootTableCommand extends BaseCommand {
@@ -23,11 +25,12 @@ public class LootTableCommand extends BaseCommand {
   @CommandCompletion("@loottables @range:1-20")
   @Syntax("<LootTable> <Amount>")
   public void roll(final Player player, String table, Integer count) {
-    LootTable tableByID = LootTableManager.getLootTableManager().getTableByID(table);
-    if (tableByID == null) {
+    Optional<LootTable> tableOptional = LootTableManager.getInstance().getByID(table);
+    if (tableOptional.isEmpty()) {
       player.sendMessage(TextUtil.format("&cLoot Table not found."));
       return;
     }
+    LootTable tableByID = tableOptional.get();
     if (tableByID.getChanceMap().size() < 1) {
       player.sendMessage(TextUtil.format("&cTable is empty."));
       return;

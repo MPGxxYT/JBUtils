@@ -1,88 +1,27 @@
 package me.mortaldev.jbutils.modules;
 
+import me.mortaldev.crudapi.CRUD;
+import me.mortaldev.crudapi.CRUDManager;
 import me.mortaldev.jbutils.Main;
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Optional;
+public class LootTableManager extends CRUDManager<LootTable> {
 
-public enum LootTableManager {
-  INSTANCE;
+  private LootTableManager() {}
 
-  public static LootTableManager getLootTableManager() {
-    return INSTANCE;
+  private static final class SingletonHolder {
+    private static final LootTableManager instance = new LootTableManager();
   }
 
-  private HashSet<LootTable> set;
-
-  public void loadTables() {
-    set = new HashSet<>();
-    File mineDir = new File(LootTableCRUD.getInstance().getPath());
-    if (!mineDir.exists()) {
-      if (!mineDir.mkdirs()) {
-        Main.log("Failed to /loottables/ create directory.");
-        return;
-      }
-    }
-    File[] files = mineDir.listFiles();
-    if (files == null) {
-      Main.log("No mines loaded.");
-      return;
-    }
-    for (File file : files) {
-      String fileNameWithoutExtension = file.getName().replace(".json", "");
-      Optional<LootTable> data = LootTableCRUD.getInstance().getData(fileNameWithoutExtension);
-      if (data.isEmpty()) {
-        Main.log("Failed to load LootTable: " + file.getName());
-        continue;
-      }
-      set.add(data.get());
-    }
+  public static LootTableManager getInstance() {
+    return SingletonHolder.instance;
+  }
+  @Override
+  public CRUD<LootTable> getCRUD() {
+    return LootTableCRUD.getInstance();
   }
 
-  public LootTable getTableByID(String id) {
-    for (LootTable lootTable : getLootTables()) {
-      if (lootTable.getID().equals(id)) {
-        return lootTable;
-      }
-    }
-    return null;
-  }
-
-  public HashSet<LootTable> getLootTables() {
-    if (set.isEmpty()) {
-      loadTables();
-    }
-    return set;
-  }
-
-  public boolean containsLootTable(LootTable table) {
-    for (LootTable lootTable : getLootTables()) {
-      if (lootTable.getID().equals(table.getID())) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public synchronized boolean addLootTable(LootTable table) {
-    if (containsLootTable(table)) {
-      return false;
-    }
-    set.add(table);
-    table.save();
-    return true;
-  }
-
-  public synchronized void removeLootTable(LootTable table) {
-    if (containsLootTable(table)) {
-      set.remove(table);
-      table.delete();
-    }
-  }
-
-  public synchronized void updateLootTable(LootTable table) {
-    set.remove(table);
-    addLootTable(table);
+  @Override
+  public void log(String string) {
+    Main.log(string);
   }
 }

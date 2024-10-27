@@ -13,6 +13,8 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class ExrOfLootTable extends SimpleExpression<ItemStack> {
 
   static {
@@ -23,10 +25,11 @@ public class ExrOfLootTable extends SimpleExpression<ItemStack> {
 
   @Override
   protected @Nullable ItemStack[] get(Event event) {
-    LootTable table = LootTableManager.getLootTableManager().getTableByID(id.getSingle(event));
-    if (table == null) {
+    Optional<LootTable> tableOptional = LootTableManager.getInstance().getByID(id.getSingle(event));
+    if (tableOptional.isEmpty()) {
       return null;
     }
+    LootTable table = tableOptional.get();
     if (table.getChanceMap().size() < 1) {
       return null;
     }

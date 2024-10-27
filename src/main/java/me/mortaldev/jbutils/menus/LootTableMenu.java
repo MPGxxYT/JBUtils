@@ -26,11 +26,11 @@ public class LootTableMenu extends InventoryGUI {
 
   public LootTableMenu(String search) {
     this.search = search;
-    this.lootTables = LootTableManager.getLootTableManager().getLootTables();
+    this.lootTables = LootTableManager.getInstance().getSet();
   }
 
   public LootTableMenu() {
-    this.lootTables = LootTableManager.getLootTableManager().getLootTables();
+    this.lootTables = LootTableManager.getInstance().getSet();
   }
 
   @Override
@@ -91,8 +91,7 @@ public class LootTableMenu extends InventoryGUI {
                         if (slot == 2) {
                           String text = stateSnapshot.getText();
                           LootTable lootTable = new LootTable(text);
-                          if (LootTableManager.getLootTableManager().addLootTable(lootTable)) {
-                            lootTable.save();
+                          if (LootTableManager.getInstance().add(lootTable)) {
                             Main.getGuiManager()
                                 .openGUI(new ModifyLootTableMenu(lootTable), player);
                             return Collections.emptyList();
@@ -166,7 +165,7 @@ public class LootTableMenu extends InventoryGUI {
                     new SupplierRunnable<>(
                         "&7Yes, delete this Loot Table.",
                         () -> {
-                          LootTableManager.getLootTableManager().removeLootTable(table);
+                          LootTableManager.getInstance().remove(table);
                           Main.getGuiManager().openGUI(new LootTableMenu(search), player);
                         }),
                     new SupplierRunnable<>(

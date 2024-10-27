@@ -74,16 +74,6 @@ public class LootTable implements CRUD.Identifiable {
     return builder.build();
   }
 
-  // CRUD Methods
-
-  public void save() {
-    LootTableCRUD.getInstance().saveData(this);
-  }
-
-  public void delete() {
-    LootTableCRUD.getInstance().deleteData(this);
-  }
-
   @Override
   public String getID() {
     return this.id;

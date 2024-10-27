@@ -78,7 +78,7 @@ public class ModifyLootTableMenu extends InventoryGUI {
                             String textEntry = stateSnapshot.getText();
                             if (textEntry.trim().matches("^(\\d+(\\.\\d+)?)$")) {
                               lootTable.updateItem(itemStack, new BigDecimal(textEntry));
-                              LootTableManager.INSTANCE.updateLootTable(lootTable);
+                              LootTableManager.getInstance().update(lootTable);
                               Main.getGuiManager().openGUI(new ModifyLootTableMenu(lootTable), player);
                             }
                           }
@@ -87,7 +87,7 @@ public class ModifyLootTableMenu extends InventoryGUI {
                     .open(player);
               } else {
                 lootTable.removeItem(itemStack);
-                LootTableManager.getLootTableManager().updateLootTable(lootTable);
+                LootTableManager.getInstance().update(lootTable);
                 Main.getGuiManager().openGUI(new ModifyLootTableMenu(lootTable), player);
               }
             });
@@ -112,7 +112,7 @@ public class ModifyLootTableMenu extends InventoryGUI {
                 return;
               }
               lootTable.addItem(itemStack);
-              LootTableManager.getLootTableManager().updateLootTable(lootTable);
+              LootTableManager.getInstance().update(lootTable);
               Main.getGuiManager().openGUI(new ModifyLootTableMenu(lootTable), player);
             });
   }
@@ -136,7 +136,7 @@ public class ModifyLootTableMenu extends InventoryGUI {
               if (!lootTable.getChanceMap().balanceTable()) {
                 return;
               }
-              LootTableManager.getLootTableManager().updateLootTable(lootTable);
+              LootTableManager.getInstance().update(lootTable);
               Main.getGuiManager().openGUI(new ModifyLootTableMenu(lootTable), player);
             });
   }

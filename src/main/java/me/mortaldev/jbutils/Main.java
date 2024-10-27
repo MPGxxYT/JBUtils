@@ -71,7 +71,7 @@ public final class Main extends JavaPlugin {
     //    mainConfig = new MainConfig();
 
     // Managers (Loading data)
-    LootTableManager.getLootTableManager().loadTables();
+    LootTableManager.getInstance().load();
 
     // GUI Manager
     guiManager = new GUIManager();
@@ -94,7 +94,7 @@ public final class Main extends JavaPlugin {
         .registerCompletion(
             "loottables",
             c ->
-                LootTableManager.getLootTableManager().getLootTables().stream()
+                LootTableManager.getInstance().getSet().stream()
                     .map(LootTable::getID)
                     .collect(Collectors.toSet()));
 

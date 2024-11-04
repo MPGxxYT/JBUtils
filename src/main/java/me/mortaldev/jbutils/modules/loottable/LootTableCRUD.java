@@ -1,17 +1,12 @@
-package me.mortaldev.jbutils.modules;
-
-import me.mortaldev.crudapi.CRUD;
-import me.mortaldev.jbutils.Main;
+package me.mortaldev.jbutils.modules.loottable;
 
 import java.util.HashMap;
+import me.mortaldev.crudapi.CRUD;
+import me.mortaldev.jbutils.Main;
 
 public class LootTableCRUD extends CRUD<LootTable> {
 
   private LootTableCRUD() {}
-
-  private static class SingletonHelper {
-    private static final LootTableCRUD INSTANCE = new LootTableCRUD();
-  }
 
   public static LootTableCRUD getInstance(){
     return SingletonHelper.INSTANCE;
@@ -30,5 +25,9 @@ public class LootTableCRUD extends CRUD<LootTable> {
   @Override
   public String getPath() {
     return Main.getInstance().getDataFolder().getAbsolutePath()+"/loottables/";
+  }
+
+  private static class SingletonHelper {
+    private static final LootTableCRUD INSTANCE = new LootTableCRUD();
   }
 }

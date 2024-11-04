@@ -51,8 +51,7 @@ public class ConfirmActionMenu extends InventoryGUI {
                     .name("&2&lCONFIRM")
                     .addLore(confirmAction.get())
                     .build())
-        .consumer(
-            event -> confirmAction.run());
+        .consumer(event -> confirmAction.run());
   }
 
   private InventoryButton CancelButton() {
@@ -63,7 +62,6 @@ public class ConfirmActionMenu extends InventoryGUI {
                     .name("&c&lCANCEL")
                     .addLore(cancelAction.get())
                     .build())
-        .consumer(
-            event -> cancelAction.run());
+        .consumer(event -> cancelAction.run());
   }
 }

@@ -3,18 +3,16 @@ package me.mortaldev.jbutils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import co.aikar.commands.PaperCommandManager;
-import me.mortaldev.jbutils.commands.LootTableCommand;
-import me.mortaldev.jbutils.modules.LootTable;
-import me.mortaldev.jbutils.modules.LootTableManager;
-import me.mortaldev.menuapi.GUIListener;
-import me.mortaldev.menuapi.GUIManager;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import org.bukkit.Bukkit;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+import me.mortaldev.jbutils.commands.LootTableCommand;
+import me.mortaldev.jbutils.modules.loottable.LootTable;
+import me.mortaldev.jbutils.modules.loottable.LootTableManager;
+import me.mortaldev.menuapi.GUIListener;
+import me.mortaldev.menuapi.GUIManager;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
@@ -80,7 +78,7 @@ public final class Main extends JavaPlugin {
 
     // Events
 
-    //    getServer().getPluginManager().registerEvents(new OnGangCommand(), this);
+//    getServer().getPluginManager().registerEvents(new Test(), this);
 
     // COMMANDS
 

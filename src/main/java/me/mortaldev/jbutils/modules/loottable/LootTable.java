@@ -1,22 +1,20 @@
-package me.mortaldev.jbutils.modules;
-
-import me.mortaldev.crudapi.CRUD;
-import me.mortaldev.jbutils.utils.ChanceMap;
-import me.mortaldev.jbutils.utils.ItemStackHelper;
-import me.mortaldev.jbutils.utils.TextUtil;
-import me.mortaldev.jbutils.utils.Utils;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
+package me.mortaldev.jbutils.modules.loottable;
 
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import me.mortaldev.crudapi.CRUD;
+import me.mortaldev.jbutils.utils.ChanceMap;
+import me.mortaldev.jbutils.utils.ItemStackHelper;
+import me.mortaldev.jbutils.utils.TextUtil;
+import me.mortaldev.jbutils.utils.Utils;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public class LootTable implements CRUD.Identifiable {
-  final String id;
-  ChanceMap<String> chanceMap = new ChanceMap<>(); // <item, chance>
+  private final String id;
+  private final ChanceMap<String> chanceMap = new ChanceMap<>(); // <item, chance>
 
   public LootTable(String id) {
     this.id = TextUtil.fileFormat(id);
@@ -60,16 +58,16 @@ public class LootTable implements CRUD.Identifiable {
         ItemStackHelper.builder(displayMaterial).name("&3&l" + id).addLore("&7ID: " + id);
     if (!chanceMap.getTable().isEmpty()) {
       builder.addLore().addLore("&3Contents:");
-      for (Map.Entry<String, BigDecimal> entry : chanceMap.getTable().entrySet()) {
-        ItemStack item = ItemStackHelper.deserialize(entry.getKey());
-        Component displayName = TextUtil.format("&7" + Utils.itemName(item));
-        if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-          displayName = item.getItemMeta().displayName();
-        }
-        builder.addLore(
-            TextUtil.format("&7 - &f" + entry.getValue() + "% &7" + item.getAmount() + "x &7")
-                .append(displayName));
-      }
+      chanceMap
+          .getTable()
+          .forEach(
+              (serialized, chance) ->
+                  builder.addLore(
+                      TextUtil.format("&7 - &f" + chance + "% &7")
+                          .append(
+                              TextUtil.format(
+                                  "&7"
+                                      + Utils.itemName(ItemStackHelper.deserialize(serialized))))));
     }
     return builder.build();
   }

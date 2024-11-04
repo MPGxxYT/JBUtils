@@ -1,16 +1,15 @@
 package me.mortaldev.jbutils.utils;
 
-import me.mortaldev.jbutils.Main;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
+import me.mortaldev.jbutils.Main;
 
 public class ChanceMap<T> {
-  LinkedHashMap<T, BigDecimal> table = new LinkedHashMap<>();
+  private LinkedHashMap<T, BigDecimal> table = new LinkedHashMap<>();
 
   public int size() {
     return table.size();
@@ -134,6 +133,14 @@ public class ChanceMap<T> {
     put(key, percent, balanceAfter);
   }
 
+  public synchronized void put(T key) {
+    put(key, false);
+  }
+
+  public synchronized void put(T key, Number amount) {
+    put(key, amount, false);
+  }
+
   public synchronized void put(T key, Number amount, boolean balanceAfter) {
     put(key, new BigDecimal(amount.toString()), balanceAfter);
   }
@@ -153,6 +160,10 @@ public class ChanceMap<T> {
     if (balanceAfter) {
       balanceTable();
     }
+  }
+
+  public synchronized void remove(T key) {
+    remove(key, false);
   }
 
   public LinkedHashMap<T, BigDecimal> getTable() {

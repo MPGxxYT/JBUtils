@@ -2,18 +2,18 @@ package me.mortaldev.jbutils.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
+import java.util.Optional;
 import me.mortaldev.jbutils.Main;
 import me.mortaldev.jbutils.menus.LootTableMenu;
-import me.mortaldev.jbutils.modules.LootTable;
-import me.mortaldev.jbutils.modules.LootTableManager;
+import me.mortaldev.jbutils.modules.loottable.LootTable;
+import me.mortaldev.jbutils.modules.loottable.LootTableManager;
 import me.mortaldev.jbutils.utils.ItemStackHelper;
 import me.mortaldev.jbutils.utils.TextUtil;
 import org.bukkit.entity.Player;
 
-import java.util.Optional;
-
 @CommandAlias("loottable|ltb")
 @CommandPermission("jbutils.admin")
+@SuppressWarnings("unused")
 public class LootTableCommand extends BaseCommand {
 
   @Default

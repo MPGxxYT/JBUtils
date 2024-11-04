@@ -1,8 +1,8 @@
 package me.mortaldev.jbutils.menus;
 
 import me.mortaldev.jbutils.Main;
-import me.mortaldev.jbutils.modules.LootTable;
-import me.mortaldev.jbutils.modules.LootTableManager;
+import me.mortaldev.jbutils.modules.loottable.LootTable;
+import me.mortaldev.jbutils.modules.loottable.LootTableManager;
 import me.mortaldev.jbutils.utils.ItemStackHelper;
 import me.mortaldev.jbutils.utils.SupplierRunnable;
 import me.mortaldev.jbutils.utils.TextUtil;
@@ -135,8 +135,7 @@ public class LootTableMenu extends InventoryGUI {
                           if (slot == 2) {
                             String text = stateSnapshot.getText();
                             String updatedText = text.trim().replaceAll("^\\W*|\\W*$", "");
-                            Main.getGuiManager()
-                                .openGUI(new LootTableMenu(updatedText), player);
+                            Main.getGuiManager().openGUI(new LootTableMenu(updatedText), player);
                           }
                           return Collections.emptyList();
                         })
@@ -160,17 +159,18 @@ public class LootTableMenu extends InventoryGUI {
               if (event.getClick() == ClickType.LEFT) {
                 Main.getGuiManager().openGUI(new ModifyLootTableMenu(table), player);
               } else {
-                ConfirmActionMenu confirmActionMenu = new ConfirmActionMenu(
-                    ItemStackHelper.builder(table.getDisplay()).name("&c&lDelete?").build(),
-                    new SupplierRunnable<>(
-                        "&7Yes, delete this Loot Table.",
-                        () -> {
-                          LootTableManager.getInstance().remove(table);
-                          Main.getGuiManager().openGUI(new LootTableMenu(search), player);
-                        }),
-                    new SupplierRunnable<>(
-                        "&7No, don't delete this Loot Table.",
-                        () -> Main.getGuiManager().openGUI(new LootTableMenu(search), player)));
+                ConfirmActionMenu confirmActionMenu =
+                    new ConfirmActionMenu(
+                        ItemStackHelper.builder(table.getDisplay()).name("&c&lDelete?").build(),
+                        new SupplierRunnable<>(
+                            "&7Yes, delete this Loot Table.",
+                            () -> {
+                              LootTableManager.getInstance().remove(table);
+                              Main.getGuiManager().openGUI(new LootTableMenu(search), player);
+                            }),
+                        new SupplierRunnable<>(
+                            "&7No, don't delete this Loot Table.",
+                            () -> Main.getGuiManager().openGUI(new LootTableMenu(search), player)));
 
                 Main.getGuiManager().openGUI(confirmActionMenu, player);
               }

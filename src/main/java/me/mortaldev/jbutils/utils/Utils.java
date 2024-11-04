@@ -52,23 +52,14 @@ public class Utils {
    * @return The formatted item name string.
    */
   public static String itemName(Material material) {
-    String name = material.getKey().getKey().replaceAll("_", " ").toLowerCase();
-    // "lapis lazuli"
-
-    String[] strings = name.split(" ");
-    StringBuilder stringBuilder = new StringBuilder();
-    for (int i = 0; i < strings.length; i++) {
-      String string = strings[i];
-      if (string.length() > 1) {
-        string = string.substring(0, 1).toUpperCase() + string.substring(1);
-        if (i + 1 < strings.length) {
-          stringBuilder.append(string).append(" ");
-        } else {
-          stringBuilder.append(string);
-        }
+    StringBuilder name = new StringBuilder();
+    String[] parts = material.getKey().getKey().split("_");
+    for (String part : parts) {
+      if (!part.isEmpty()) {
+        name.append(Character.toUpperCase(part.charAt(0))).append(part.substring(1));
       }
+      name.append(' ');
     }
-    return stringBuilder.toString();
+    return name.toString().trim();
   }
-
 }

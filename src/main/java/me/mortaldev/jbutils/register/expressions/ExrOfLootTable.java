@@ -6,14 +6,13 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import me.mortaldev.jbutils.modules.LootTable;
-import me.mortaldev.jbutils.modules.LootTableManager;
+import java.util.Optional;
+import me.mortaldev.jbutils.modules.loottable.LootTable;
+import me.mortaldev.jbutils.modules.loottable.LootTableManager;
 import me.mortaldev.jbutils.utils.ItemStackHelper;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class ExrOfLootTable extends SimpleExpression<ItemStack> {
 

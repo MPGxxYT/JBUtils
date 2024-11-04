@@ -1,8 +1,11 @@
 package me.mortaldev.jbutils.menus;
 
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Map;
 import me.mortaldev.jbutils.Main;
-import me.mortaldev.jbutils.modules.LootTable;
-import me.mortaldev.jbutils.modules.LootTableManager;
+import me.mortaldev.jbutils.modules.loottable.LootTable;
+import me.mortaldev.jbutils.modules.loottable.LootTableManager;
 import me.mortaldev.jbutils.utils.ItemStackHelper;
 import me.mortaldev.jbutils.utils.TextUtil;
 import me.mortaldev.menuapi.InventoryButton;
@@ -14,10 +17,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Map;
 
 public class ModifyLootTableMenu extends InventoryGUI {
 

@@ -10,6 +10,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
+
+@SuppressWarnings("unused")
 public class ItemStackHelper {
 
   /**
@@ -153,7 +155,6 @@ public class ItemStackHelper {
       }
       return this;
     }
-
 
     /**
      * Adds a lore to the item. Empty will add blank lore.
@@ -372,7 +373,8 @@ public class ItemStackHelper {
     }
 
     /**
-     * Replaces the first occurrence of a given lore component with a replacement component in the item's lore list.
+     * Replaces the first occurrence of a given lore component with a replacement component in the
+     * item's lore list.
      *
      * @param lore The Component to be replaced.
      * @param replacement The Component to replace the existing lore component with.
@@ -387,7 +389,7 @@ public class ItemStackHelper {
      * Replaces the first occurrence of a given lore component with a replacement component in the
      * item's lore list.
      *
-     * @param lore        The Component to be replaced.
+     * @param lore The Component to be replaced.
      * @param replacement The Component to replace the existing lore component with.
      * @return The updated builder instance.
      */

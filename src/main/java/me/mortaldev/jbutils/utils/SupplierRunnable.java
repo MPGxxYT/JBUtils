@@ -1,9 +1,8 @@
 package me.mortaldev.jbutils.utils;
 
 /**
- * A class that holds a supplier of data and a runnable that can be
- * executed when the data is requested. This is useful for creating
- * lazy-executed code that is associated with some data.
+ * A class that holds a supplier of data and a runnable that can be executed when the data is
+ * requested. This is useful for creating lazy-executed code that is associated with some data.
  *
  * @param <T> the type of data that is held by the supplier
  */
@@ -33,6 +32,4 @@ public class SupplierRunnable<T> {
   public void run() {
     runnable.run();
   }
-
-
 }

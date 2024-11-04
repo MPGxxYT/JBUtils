@@ -1,4 +1,7 @@
 package me.mortaldev.jbutils.utils;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import me.mortaldev.jbutils.records.Pair;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -6,10 +9,8 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+@SuppressWarnings("unused")
 public class TextUtil {
 
   /**
@@ -221,7 +222,7 @@ public class TextUtil {
     int i = 0;
     while (i < str.length()) {
       if (i <= str.length() - target.length()
-          && str.substring(i, i + target.length()).toString().equals(target)) {
+          && str.substring(i, i + target.length()).equals(target)) {
         if (i + target.length() + steps <= str.length()) {
           newStr.append(str, i + target.length(), i + target.length() + steps);
           newStr.append(target);

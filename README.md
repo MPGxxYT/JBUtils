@@ -1,6 +1,6 @@
 
 # JBUtils
-This is a plugin for JailBreakMC that adds features to help devs create anything.
+This is a plugin for JailBreakMC that adds features to help admins create anything.
 
 ## Dependencies
 This plugin has no real dependencies. Only "soft" dependencies. Add them for more features, but are not required.
